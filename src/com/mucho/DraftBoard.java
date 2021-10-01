@@ -1,5 +1,7 @@
 package com.mucho;
 
+import java.util.ArrayList;
+
 public class DraftBoard {
     /*
     maintains list of all Players still remaining in draft
@@ -9,4 +11,11 @@ public class DraftBoard {
     tracks player/position scarcity
     test for git
      */
+
+    private ArrayList<Player> overallBoard;
+    private ArrayList<Player> PGBoard;
+    private ArrayList<Player> SGBoard;
+    private ArrayList<Player> SFBoard;
+    private ArrayList<Player> PFBoard;
+    private ArrayList<Player> CBoard;
 }
