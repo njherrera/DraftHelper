@@ -34,4 +34,24 @@ public class ExcelReader {
 
     }
 
+    public Player generateAveragePG(XSSFSheet board){
+
+    }
+
+    public Player generateAverageSG(XSSFSheet board){
+
+    }
+
+    public Player generateAverageSF(XSSFSheet board){
+
+    }
+
+    public Player generateAveragePF(XSSFSheet board){
+
+    }
+
+    public Player generateAverageC(XSSFSheet board){
+        
+    }
+
 }
