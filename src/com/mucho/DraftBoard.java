@@ -18,4 +18,33 @@ public class DraftBoard {
     private ArrayList<Player> SFBoard;
     private ArrayList<Player> PFBoard;
     private ArrayList<Player> CBoard;
+
+    public void generateBoards(ExcelReader reader){
+        generateOverallBoard();
+        generatePGBoard();
+        generateSGBoard();
+        generateSFBoard();
+        generatePFBoard();
+        generateCBoard();
+    }
+
+    private void generateOverallBoard() {
+    }
+
+    private void generateCBoard() {
+    }
+
+    private void generatePFBoard() {
+    }
+
+    private void generateSFBoard() {
+    }
+
+    private void generateSGBoard() {
+    }
+
+    private void generatePGBoard() {
+    }
+
+
 }

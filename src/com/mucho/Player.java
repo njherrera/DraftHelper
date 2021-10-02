@@ -9,7 +9,7 @@ public class Player {
     */
 
     private String positions;
-    private int gamesPlayed;
+    private double gamesPlayed;
     private double FGPercentage;
     private double FTPercentage;
     private double threePM;
@@ -23,7 +23,7 @@ public class Player {
     private String positiveOutliers;
     private String negativeOutliers; // should this only count FG%/FT%/TO, i.e. categories where a player can actively hurt you?
 
-    public Player(String pos, int gp, double fg, double ft, double threes, double points,
+    public Player(String pos, double gp, double fg, double ft, double threes, double points,
                   double reb, double assists, double steals, double blocks, double turnovers, double htscore) {
         this.positions = pos;
         this.gamesPlayed = gp;
