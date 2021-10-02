@@ -30,28 +30,31 @@ public class ExcelReader {
         XSSFSheet importedBoard = myWorkbook.getSheetAt(0);
     }
 
-    public Player generateAveragePlayer(XSSFSheet board){
+    public void generate
+
+    public void generateAveragePlayer(DraftBoard board){
+        // go through importedBoard and average all of the relevant categories
+        // create player with constructor using average of each category
+    }
+
+    public void generateAveragePG(DraftBoard PGBoard){
 
     }
 
-    public Player generateAveragePG(XSSFSheet board){
+    public void generateAverageSG(DraftBoard SGBoard){
 
     }
 
-    public Player generateAverageSG(XSSFSheet board){
+    public void generateAverageSF(DraftBoard SFBoard){
 
     }
 
-    public Player generateAverageSF(XSSFSheet board){
+    public void generateAveragePF(DraftBoard PFBoard){
 
     }
 
-    public Player generateAveragePF(XSSFSheet board){
+    public void generateAverageC(DraftBoard CBoard){
 
-    }
-
-    public Player generateAverageC(XSSFSheet board){
-        
     }
 
 }
