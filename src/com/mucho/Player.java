@@ -78,5 +78,25 @@ public class Player {
     public void generateTOFlag(Player trueAverage, Player averagePositional, double standardDeviation){
 
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "positions='" + positions + '\'' +
+                ", gamesPlayed=" + gamesPlayed +
+                ", FGPercentage=" + FGPercentage +
+                ", FTPercentage=" + FTPercentage +
+                ", threePM=" + threePM +
+                ", PTS=" + PTS +
+                ", TREB=" + TREB +
+                ", AST=" + AST +
+                ", STL=" + STL +
+                ", BLK=" + BLK +
+                ", TO=" + TO +
+                ", HashtagScore=" + HashtagScore +
+                ", positiveOutliers='" + positiveOutliers + '\'' +
+                ", negativeOutliers='" + negativeOutliers + '\'' +
+                '}';
+    }
 }
 
