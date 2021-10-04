@@ -1,5 +1,6 @@
 package com.mucho;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class DraftBoard {
@@ -27,11 +28,14 @@ public class DraftBoard {
         this.PFBoard = PFBoard;
         this.CBoard = CBoard;
     }
-
     public DraftBoard(){
-
+        this.overallBoard = new ArrayList<Player>();
+        this.PGBoard = new ArrayList<Player>();
+        this.SGBoard = new ArrayList<Player>();
+        this.SFBoard = new ArrayList<Player>();
+        this.PFBoard = new ArrayList<Player>();
+        this.CBoard = new ArrayList<Player>();
     }
-
     public void generateBoards(ExcelReader reader){
         for (int i = 1; i < reader.getImportedBoard().getLastRowNum(); i++) {
             if (reader.getImportedBoard().getRow(i).getCell(0).toString().equals("R#") != true) {
@@ -61,22 +65,8 @@ public class DraftBoard {
         }
     }
 
-    private void generateOverallBoard() {
-    }
+    public void generateStandardDeviations(){
 
-    private void generateCBoard() {
-    }
-
-    private void generatePFBoard() {
-    }
-
-    private void generateSFBoard() {
-    }
-
-    private void generateSGBoard() {
-    }
-
-    private void generatePGBoard() {
     }
 
     public ArrayList<Player> getOverallBoard() {
