@@ -113,7 +113,7 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / 200;
         }
-        averagePlayer = new Player("none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averagePlayer = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
 
     }
@@ -143,7 +143,7 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / playerCounter;
         }
-        averagePG = new Player("PG",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averagePG = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
 
     }
@@ -173,7 +173,7 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / playerCounter;
         }
-        averageSG = new Player("SG",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averageSG = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
 
     }
@@ -203,9 +203,8 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / playerCounter;
         }
-        averageSF = new Player("SF",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averageSF = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
-
     }
 
     public void generateAveragePF(){
@@ -233,7 +232,7 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / playerCounter;
         }
-        averagePF = new Player("PF",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averagePF = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
 
     }
@@ -263,7 +262,7 @@ public class ExcelReader {
         for (int i = 0; i < totalStats.length; i++){
             totalStats[i] = totalStats[i] / playerCounter;
         }
-        averageC = new Player("C",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
+        averageC = new Player("none", "none",totalStats[0], totalStats[1], totalStats[2], totalStats[3], totalStats[4], totalStats[5],
                 totalStats[6], totalStats[7], totalStats[8], totalStats[9], 0);
 
     }
