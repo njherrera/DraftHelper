@@ -70,10 +70,6 @@ public class DraftBoard {
         }
     }
 
-    public void generateStandardDeviations(){
-
-    }
-
     public ArrayList<Player> getOverallBoard() {
         return overallBoard;
     }

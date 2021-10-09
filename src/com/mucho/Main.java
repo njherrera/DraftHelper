@@ -18,22 +18,10 @@ public class Main {
 	 */
 
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
-        testReader.generateAveragePlayer();
-        testReader.generateAveragePG();
-        testReader.generateAverageSG();
-        testReader.generateAverageSF();
-        testReader.generateAveragePF();
-        testReader.generateAverageC();
-        System.out.println(testReader.getAveragePlayer().toString());
-        System.out.println(testReader.getAveragePG().toString());
-        System.out.println(testReader.getAverageSG().toString());
-        System.out.println(testReader.getAverageSF().toString());
-        System.out.println(testReader.getAveragePF().toString());
-        System.out.println(testReader.getAverageC().toString());
         DraftBoard board = new DraftBoard();
+        BoardAnalyzer analyzer = new BoardAnalyzer();
         board.generateBoards(testReader);
-        for (Player plyr : board.getPGBoard()){
-            System.out.println(plyr.toString());
-        }
+        analyzer.generateAveragePlayer(board);
+        System.out.println(analyzer.getAveragePlayer().toString());
     }
 }
