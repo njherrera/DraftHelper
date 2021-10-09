@@ -46,6 +46,23 @@ public class Player {
         this.HashtagScore = htscore;
     }
 
+    public Player(String pos, String playerName){
+        this.positions = pos;
+        this.name = "";
+        this.gamesPlayed = 0;
+        this.FGPercentage = 0;
+        this.FTPercentage = 0;
+        this.FTPercentage = 0;
+        this.threePM = 0;
+        this.PTS = 0;
+        this.TREB = 0;
+        this.AST = 0;
+        this.STL = 0;
+        this.BLK = 0;
+        this.TO = 0;
+        this.HashtagScore = 0;
+    }
+
     public String getPositions() {
         return positions;
     }

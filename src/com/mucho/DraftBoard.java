@@ -18,6 +18,12 @@ public class DraftBoard {
     private ArrayList<Player> SFBoard;
     private ArrayList<Player> PFBoard;
     private ArrayList<Player> CBoard;
+    private static Player averagePlayer;
+    private static Player averagePG;
+    private static Player averageSG;
+    private static Player averageSF;
+    private static Player averagePF;
+    private static Player averageC;
 
     public DraftBoard(ArrayList<Player> overallBoard, ArrayList<Player> PGBoard, ArrayList<Player> SGBoard, ArrayList<Player> SFBoard, ArrayList<Player> PFBoard, ArrayList<Player> CBoard) {
         this.overallBoard = overallBoard;
