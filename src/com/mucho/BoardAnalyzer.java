@@ -13,61 +13,14 @@ public class BoardAnalyzer {
     private static Player standardDeviations; // making players to house the standard deviations on all categories
     private static Player standardDeviationsPG;
     private static Player standardDeviationsSG;
-    private static Player standardDevationsSF;
+    private static Player standardDeviationsSF;
     private static Player standardDeviationsPF;
     private static Player standardDeviationsC;
 
-    public BoardAnalyzer(){
+    public BoardAnalyzer(){ // not sure if this class even needs a constructor
 
     }
 
-    public static Player getAveragePlayer() {
-        return averagePlayer;
-    }
-
-    public static void setAveragePlayer(Player averagePlayer) {
-        BoardAnalyzer.averagePlayer = averagePlayer;
-    }
-
-    public static Player getAveragePG() {
-        return averagePG;
-    }
-
-    public static void setAveragePG(Player averagePG) {
-        BoardAnalyzer.averagePG = averagePG;
-    }
-
-    public static Player getAverageSG() {
-        return averageSG;
-    }
-
-    public static void setAverageSG(Player averageSG) {
-        BoardAnalyzer.averageSG = averageSG;
-    }
-
-    public static Player getAverageSF() {
-        return averageSF;
-    }
-
-    public static void setAverageSF(Player averageSF) {
-        BoardAnalyzer.averageSF = averageSF;
-    }
-
-    public static Player getAveragePF() {
-        return averagePF;
-    }
-
-    public static void setAveragePF(Player averagePF) {
-        BoardAnalyzer.averagePF = averagePF;
-    }
-
-    public static Player getAverageC() {
-        return averageC;
-    }
-
-    public static void setAverageC(Player averageC) {
-        BoardAnalyzer.averageC = averageC;
-    }
 
     public void generateAveragePlayer(DraftBoard board){
         Player averageP = new Player("none", "THE TRUE AVERAGE PLAYER");
@@ -218,5 +171,100 @@ public class BoardAnalyzer {
         averageP.setTO(averageP.getTO() / board.getCBoard().size());
         averageC = averageP;
     }
+    public static Player getStandardDeviations() {
+        return standardDeviations;
+    }
 
+    public static void setStandardDeviations(Player standardDeviations) {
+        BoardAnalyzer.standardDeviations = standardDeviations;
+    }
+
+    public static Player getStandardDeviationsPG() {
+        return standardDeviationsPG;
+    }
+
+    public static void setStandardDeviationsPG(Player standardDeviationsPG) {
+        BoardAnalyzer.standardDeviationsPG = standardDeviationsPG;
+    }
+
+    public static Player getStandardDeviationsSG() {
+        return standardDeviationsSG;
+    }
+
+    public static void setStandardDeviationsSG(Player standardDeviationsSG) {
+        BoardAnalyzer.standardDeviationsSG = standardDeviationsSG;
+    }
+
+    public static Player getStandardDeviationsSF() {
+        return standardDeviationsSF;
+    }
+
+    public static void setStandardDeviationsSF(Player standardDeviationsSF) {
+        BoardAnalyzer.standardDeviationsSF = standardDeviationsSF;
+    }
+
+    public static Player getStandardDeviationsPF() {
+        return standardDeviationsPF;
+    }
+
+    public static void setStandardDeviationsPF(Player standardDeviationsPF) {
+        BoardAnalyzer.standardDeviationsPF = standardDeviationsPF;
+    }
+
+    public static Player getStandardDeviationsC() {
+        return standardDeviationsC;
+    }
+
+    public static void setStandardDeviationsC(Player standardDeviationsC) {
+        BoardAnalyzer.standardDeviationsC = standardDeviationsC;
+    }
+
+
+    public static Player getAveragePlayer() {
+        return averagePlayer;
+    }
+
+    public static void setAveragePlayer(Player averagePlayer) {
+        BoardAnalyzer.averagePlayer = averagePlayer;
+    }
+
+    public static Player getAveragePG() {
+        return averagePG;
+    }
+
+    public static void setAveragePG(Player averagePG) {
+        BoardAnalyzer.averagePG = averagePG;
+    }
+
+    public static Player getAverageSG() {
+        return averageSG;
+    }
+
+    public static void setAverageSG(Player averageSG) {
+        BoardAnalyzer.averageSG = averageSG;
+    }
+
+    public static Player getAverageSF() {
+        return averageSF;
+    }
+
+    public static void setAverageSF(Player averageSF) {
+        BoardAnalyzer.averageSF = averageSF;
+    }
+
+    public static Player getAveragePF() {
+        return averagePF;
+    }
+
+    public static void setAveragePF(Player averagePF) {
+        BoardAnalyzer.averagePF = averagePF;
+    }
+
+    public static Player getAverageC() {
+        return averageC;
+    }
+
+    public static void setAverageC(Player averageC) {
+        BoardAnalyzer.averageC = averageC;
+    }
 }
