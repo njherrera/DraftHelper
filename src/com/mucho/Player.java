@@ -6,6 +6,11 @@ public class Player {
     HAS A position
     HAS some way of designating elite/poor stats
     starting format is 9 cat roto
+
+    determining elite cats:
+        compare player to averagePlayer and average___
+        define std dev for each category, for both all players and position
+        categorize players stats in terms of std dev from mean, both averagePlayer and average___
     */
 
     private String positions;

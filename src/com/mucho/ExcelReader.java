@@ -24,6 +24,13 @@ public class ExcelReader {
     private static Player averageC;
     private XSSFSheet importedBoard;
 
+    public ExcelReader(String filePath) throws FileNotFoundException, IOException {
+        File board = new File(filePath);
+        FileInputStream inputStream = new FileInputStream(board);
+        XSSFWorkbook myWorkbook = new XSSFWorkbook(inputStream);
+        this.importedBoard = myWorkbook.getSheetAt(0);
+    }
+
     public static Player getAveragePlayer() {
         return averagePlayer;
     }
@@ -80,12 +87,7 @@ public class ExcelReader {
         this.importedBoard = importedBoard;
     }
 
-    public ExcelReader(String filePath) throws FileNotFoundException, IOException {
-        File board = new File(filePath);
-        FileInputStream inputStream = new FileInputStream(board);
-        XSSFWorkbook myWorkbook = new XSSFWorkbook(inputStream);
-        this.importedBoard = myWorkbook.getSheetAt(0);
-    }
+
 
     // for generateAveragePlayer as well as other methods, implement calculating average FG/FT with total makes and attempts of all players?
     public void generateAveragePlayer(){
