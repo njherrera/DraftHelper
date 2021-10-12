@@ -73,6 +73,15 @@ public class DraftBoard {
         }
     }
 
+    // for each player on the overall board (i.e. all players), determine which categories they're outliers in
+    public void flagPlayers(){
+        BoardAnalyzer.generateAveragePlayer(this);
+        BoardAnalyzer.generateStandardDeviations(this);
+        for (Player plyr : this.overallBoard) {
+            plyr.setOutliers(BoardAnalyzer.getAveragePlayer(), BoardAnalyzer.getStandardDeviations());
+        }
+    }
+
     public ArrayList<Player> getOverallBoard() {
         return overallBoard;
     }

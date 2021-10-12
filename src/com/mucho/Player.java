@@ -63,6 +63,37 @@ public class Player {
         this.HashtagScore = 0;
     }
 
+    public void setOutliers(Player averagePlayer, Player standardDeviations){
+        StringBuilder outliers = new StringBuilder();
+        if (this.getFGPercentage() > averagePlayer.getFGPercentage() + standardDeviations.getFGPercentage()){
+            outliers.append("FG, ");
+        }
+        if (this.getFTPercentage() > averagePlayer.getFTPercentage() + standardDeviations.getFTPercentage()){
+            outliers.append("FT, ");
+        }
+        if (this.getThreePM() > averagePlayer.getThreePM() + standardDeviations.getThreePM()){
+            outliers.append("3PM, ");
+        }
+        if (this.getPTS() > averagePlayer.getPTS() + standardDeviations.getPTS()){
+            outliers.append("PTS, ");
+        }
+        if (this.getTREB() > averagePlayer.getTREB() + standardDeviations.getTREB()){
+            outliers.append("REB, ");
+        }
+        if (this.getAST() > averagePlayer.getAST() + standardDeviations.getAST()){
+            outliers.append("AST, ");
+        }
+        if (this.getSTL() > averagePlayer.getSTL() + standardDeviations.getSTL()){
+            outliers.append("STL, ");
+        }
+        if (this.getBLK() > averagePlayer.getBLK() + standardDeviations.getBLK()){
+            outliers.append("BLK, ");
+        }
+        if (this.getTO() < averagePlayer.getTO() - standardDeviations.getTO()){
+            outliers.append("TO");
+        }
+    }
+
     public String getPositions() {
         return positions;
     }
@@ -181,46 +212,6 @@ public class Player {
 
     public void setNegativeOutliers(String negativeOutliers) {
         this.negativeOutliers = negativeOutliers;
-    }
-
-    public void generateGPFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-        // compare this player's games played to the average player's games played
-    }
-
-    public void generateFGFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateFTFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generate3PMFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generatePtsFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateRebFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateAstFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateStlFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateBlkFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
-    }
-
-    public void generateTOFlag(Player trueAverage, Player averagePositional, double standardDeviation){
-
     }
 
     @Override
