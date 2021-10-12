@@ -1,5 +1,9 @@
 package com.mucho;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
+import java.util.ArrayList;
+
 public class BoardAnalyzer {
 
     // analyzes draft board and generates average players, as well as standard deviations in each category
@@ -22,7 +26,8 @@ public class BoardAnalyzer {
     }
 
 
-    public void generateAveragePlayer(DraftBoard board){
+    // generateAveragePlayer goes through each player on the overall draft board, adds up per-game stats in each category, then divides the totals by board size (# of players)
+    public static void generateAveragePlayer(DraftBoard board){
         Player averageP = new Player("none", "THE TRUE AVERAGE PLAYER");
         for (Player p : board.getOverallBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -47,7 +52,8 @@ public class BoardAnalyzer {
         averagePlayer = averageP;
     }
 
-    public void generateAveragePG(DraftBoard board){
+    // same process as with generateAveragePlayer, except this time it's intended for use with the draft board of point guards
+    public static void generateAveragePG(DraftBoard board){
         Player averageP = new Player("PG", "Average PG");
         for (Player p : board.getPGBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -72,7 +78,7 @@ public class BoardAnalyzer {
         averagePG = averageP;
     }
 
-    public void generateAverageSG(DraftBoard board){
+    public static void generateAverageSG(DraftBoard board){
         Player averageP = new Player("SG", "Average SG");
         for (Player p : board.getSGBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -97,7 +103,7 @@ public class BoardAnalyzer {
         averageSG = averageP;
     }
 
-    public void generateAverageSF(DraftBoard board){
+    public static void generateAverageSF(DraftBoard board){
         Player averageP = new Player("SF", "Average SF");
         for (Player p : board.getSFBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -122,7 +128,7 @@ public class BoardAnalyzer {
         averageSF = averageP;
     }
 
-    public void generateAveragePF(DraftBoard board){
+    public static void generateAveragePF(DraftBoard board){
         Player averageP = new Player("PF", "Average PF");
         for (Player p : board.getPFBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -147,7 +153,7 @@ public class BoardAnalyzer {
         averagePF = averageP;
     }
 
-    public void generateAverageC(DraftBoard board){
+    public static void generateAverageC(DraftBoard board){
         Player averageP = new Player("C", "Average Center");
         for (Player p : board.getCBoard()){
             averageP.setFGPercentage(averageP.getFGPercentage() + p.getFGPercentage());
@@ -171,6 +177,139 @@ public class BoardAnalyzer {
         averageP.setTO(averageP.getTO() / board.getCBoard().size());
         averageC = averageP;
     }
+
+    // creates a player object, which houses the standard deviations for a position (in this case, standard deviations for all positions)
+    public static void generateStandardDeviations(DraftBoard board){
+        Player stdDevAllPositions = new Player("all positions", "standard deviations - all positions", 0, generateStandardDeviationFG(board.getOverallBoard()),
+                generateStandardDeviationFT(board.getOverallBoard()), generateStandardDeviationThrees(board.getOverallBoard()), generateStandardDeviationPTS(board.getOverallBoard()),
+                generateStandardDeviationTREB(board.getOverallBoard()), generateStandardDeviationAST(board.getOverallBoard()), generateStandardDeviationSTL(board.getOverallBoard()),
+                generateStandardDeviationBLK(board.getOverallBoard()), generateStandardDeviationTO(board.getOverallBoard()), 0);
+        standardDeviations = stdDevAllPositions;
+    }
+
+    public static void generateStandardDeviationsPG(DraftBoard board){
+        Player stdDevPG = new Player("point guard", "standard deviations - point guard", 0, generateStandardDeviationFG(board.getPGBoard()),
+                generateStandardDeviationFT(board.getPGBoard()), generateStandardDeviationThrees(board.getPGBoard()), generateStandardDeviationPTS(board.getPGBoard()),
+                generateStandardDeviationTREB(board.getPGBoard()), generateStandardDeviationAST(board.getPGBoard()), generateStandardDeviationSTL(board.getPGBoard()),
+                generateStandardDeviationBLK(board.getPGBoard()), generateStandardDeviationTO(board.getPGBoard()), 0);
+        standardDeviationsPG = stdDevPG;
+    }
+
+    public static void generateStandardDeviationsSG(DraftBoard board){
+        Player stdDevSG = new Player("shooting guard", "standard deviations - shooting guard", 0, generateStandardDeviationFG(board.getSGBoard()),
+                generateStandardDeviationFT(board.getSGBoard()), generateStandardDeviationThrees(board.getSGBoard()), generateStandardDeviationPTS(board.getSGBoard()),
+                generateStandardDeviationTREB(board.getSGBoard()), generateStandardDeviationAST(board.getSGBoard()), generateStandardDeviationSTL(board.getSGBoard()),
+                generateStandardDeviationBLK(board.getSGBoard()), generateStandardDeviationTO(board.getSGBoard()), 0);
+        standardDeviationsSG = stdDevSG;
+    }
+
+    public static void generateStandardDeviationsSF(DraftBoard board){
+        Player stdDevSF = new Player("small forward", "standard deviations - small forward", 0, generateStandardDeviationFG(board.getSFBoard()),
+                generateStandardDeviationFT(board.getSFBoard()), generateStandardDeviationThrees(board.getSFBoard()), generateStandardDeviationPTS(board.getSFBoard()),
+                generateStandardDeviationTREB(board.getSFBoard()), generateStandardDeviationAST(board.getSFBoard()), generateStandardDeviationSTL(board.getSFBoard()),
+                generateStandardDeviationBLK(board.getSFBoard()), generateStandardDeviationTO(board.getSFBoard()), 0);
+        standardDeviationsSF = stdDevSF;
+    }
+
+    public static void generateStandardDeviationsPF(DraftBoard board){
+        Player stdDevPF = new Player("power forward", "standard deviations - power forward", 0, generateStandardDeviationFG(board.getPFBoard()),
+                generateStandardDeviationFT(board.getPFBoard()), generateStandardDeviationThrees(board.getPFBoard()), generateStandardDeviationPTS(board.getPFBoard()),
+                generateStandardDeviationTREB(board.getPFBoard()), generateStandardDeviationAST(board.getPFBoard()), generateStandardDeviationSTL(board.getPFBoard()),
+                generateStandardDeviationBLK(board.getPFBoard()), generateStandardDeviationTO(board.getPFBoard()), 0);
+        standardDeviationsPF = stdDevPF;
+    }
+
+    public static void generateStandardDeviationsC(DraftBoard board){
+        Player stdDevC = new Player("center", "standard deviations - center", 0, generateStandardDeviationFG(board.getCBoard()),
+                generateStandardDeviationFT(board.getCBoard()), generateStandardDeviationThrees(board.getCBoard()), generateStandardDeviationPTS(board.getCBoard()),
+                generateStandardDeviationTREB(board.getCBoard()), generateStandardDeviationAST(board.getCBoard()), generateStandardDeviationSTL(board.getCBoard()),
+                generateStandardDeviationBLK(board.getCBoard()), generateStandardDeviationTO(board.getCBoard()), 0);
+        standardDeviationsC = stdDevC;
+    }
+
+    // takes a list of players (i.e. PGBoard, SGBoard, etc.) and calculates the standard deviation of their FG percentages
+    public static double generateStandardDeviationFG(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getFGPercentage());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationFT(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getFTPercentage());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationThrees(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getThreePM());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationPTS(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getPTS());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationTREB(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getTREB());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationAST(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getAST());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationSTL(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getSTL());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationBLK(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getBLK());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+    public static double generateStandardDeviationTO(ArrayList<Player> players){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (Player plyr : players) {
+            stats.addValue(plyr.getTO());
+        }
+        double standardDeviation = stats.getStandardDeviation();
+        return standardDeviation;
+    }
+
+
     public static Player getStandardDeviations() {
         return standardDeviations;
     }

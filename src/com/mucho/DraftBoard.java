@@ -41,6 +41,9 @@ public class DraftBoard {
         this.PFBoard = new ArrayList<Player>();
         this.CBoard = new ArrayList<Player>();
     }
+
+    // generateBoards reads the excel file with projections/stats for each player, then goes through line by line and adds each player to draft boards
+    // if cell 0 in a row is R#, that means it isn't a player row and instead has headers for the stat categories
     public void generateBoards(ExcelReader reader){
         for (int i = 1; i < reader.getImportedBoard().getLastRowNum(); i++) {
             if (reader.getImportedBoard().getRow(i).getCell(0).toString().equals("R#") != true) {
@@ -57,13 +60,13 @@ public class DraftBoard {
                 overallBoard.add(newPlayer);
                 if (newPlayer.getPositions().contains("PG")){
                     PGBoard.add(newPlayer);
-                } else if (newPlayer.getPositions().contains("SG")){
+                } if (newPlayer.getPositions().contains("SG")){
                     SGBoard.add(newPlayer);
-                } else if (newPlayer.getPositions().contains("SF")){
+                } if (newPlayer.getPositions().contains("SF")){
                     SFBoard.add(newPlayer);
-                } else if (newPlayer.getPositions().contains("PF")){
+                } if (newPlayer.getPositions().contains("PF")){
                     PFBoard.add(newPlayer);
-                } else if (newPlayer.getPositions().contains("C")){
+                } if (newPlayer.getPositions().contains("C")){
                     CBoard.add(newPlayer);
                 }
             }

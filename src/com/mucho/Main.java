@@ -19,9 +19,19 @@ public class Main {
 
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
-        BoardAnalyzer analyzer = new BoardAnalyzer();
         board.generateBoards(testReader);
-        analyzer.generateAveragePlayer(board);
-        System.out.println(analyzer.getAveragePlayer().toString());
+        BoardAnalyzer.generateAverageC(board);
+        BoardAnalyzer.generateStandardDeviations(board);
+        System.out.println(BoardAnalyzer.getStandardDeviations().toString());
+        BoardAnalyzer.generateStandardDeviationsPG(board);
+        System.out.println(BoardAnalyzer.getStandardDeviationsPG().toString());
+        BoardAnalyzer.generateStandardDeviationsSG(board);
+        System.out.println(BoardAnalyzer.getStandardDeviationsSG().toString());
+        BoardAnalyzer.generateStandardDeviationsSF(board);
+        System.out.println(BoardAnalyzer.getStandardDeviationsSF().toString());
+        BoardAnalyzer.generateStandardDeviationsPF(board);
+        System.out.println(BoardAnalyzer.getStandardDeviationsPF().toString());
+        BoardAnalyzer.generateStandardDeviationsC(board);
+        System.out.println(BoardAnalyzer.getStandardDeviationsC().toString());
     }
 }
