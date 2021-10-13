@@ -1,7 +1,9 @@
 package com.mucho;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Team {
 
@@ -114,7 +116,7 @@ public class Team {
         }
     }
 
-    public Player recommendAPlayer(DraftBoard board){
+    public ArrayList<Player> recommendAPlayer(DraftBoard board){
         HashMap<Player, Integer> recommendations = new HashMap<Player, Integer>(    );
         if (this.needsFG == true){
             for(Player plyr : board.getOverallBoard()){
@@ -129,29 +131,120 @@ public class Team {
             }
         }
         if (this.needsFT == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("FT")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsThrees == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("3PM")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsPTS == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("PTS")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsREB == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("REB")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsAST == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("AST")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsSTL == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("STL")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
+        }
+        if (this.needsBLK == true){
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("BLK")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
         if (this.needsLessTOs == true){
-
+            for(Player plyr : board.getOverallBoard()){
+                if (plyr.getPositiveOutliers().contains("TO")){
+                    Integer count = recommendations.get(plyr);
+                    if (count == null){
+                        recommendations.put(plyr, 1);
+                    } else {
+                        recommendations.put(plyr, count +1);
+                    }
+                }
+            }
         }
+        return convertRecommendationsToList(recommendations);
     }
 
-    public Player recommendAPG(){
+    public ArrayList<Player> convertRecommendationsToList(HashMap<Player, Integer> recommendations){
+        ArrayList<Player> listOfRecommendations = new ArrayList<Player>();
+        for (Map.Entry<Player, Integer> entry : recommendations.entrySet()) {
+            entry.getKey().setFitsNeeds(entry.getValue());
+            listOfRecommendations.add(entry.getKey());
+        }
+        Collections.sort(listOfRecommendations, new PlayerComparator());
+        ArrayList<Player> topPlayers = new ArrayList<Player>();
+        int counter = 0;
+        while (counter < 5 && listOfRecommendations.get(counter) != null){
+            topPlayers.add(listOfRecommendations.get(counter));
+            counter++;
+        }
+        return topPlayers;
+    }
+    /*public Player recommendAPG(){
 
     }
 
@@ -169,5 +262,13 @@ public class Team {
 
     public Player recommendAC(){
 
+    }*/
+
+    public ArrayList<Player> getTeamRoster() {
+        return teamRoster;
+    }
+
+    public void setTeamRoster(ArrayList<Player> teamRoster) {
+        this.teamRoster = teamRoster;
     }
 }

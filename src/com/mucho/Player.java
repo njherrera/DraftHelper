@@ -28,6 +28,7 @@ public class Player {
     private double HashtagScore;
     private String positiveOutliers;
     private String negativeOutliers; // should this only count FG%/FT%/TO, i.e. categories where a player can actively hurt you?
+    private int fitsNeeds;
 
     public Player(String pos, String playerName, double gp, double fg, double ft, double threes, double points,
                   double reb, double assists, double steals, double blocks, double turnovers, double htscore) {
@@ -214,6 +215,10 @@ public class Player {
         this.negativeOutliers = negativeOutliers;
     }
 
+    public void setFitsNeeds(int needsFit) { this.fitsNeeds = needsFit; }
+
+    public int getFitsNeeds() { return fitsNeeds; }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -234,5 +239,6 @@ public class Player {
                 ", negativeOutliers='" + negativeOutliers + '\'' +
                 '}';
     }
+
 }
 

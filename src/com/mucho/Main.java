@@ -23,7 +23,17 @@ public class Main {
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
-        BoardAnalyzer.generateAverageC(board);
+        Team myTeam = new Team(15);
+        myTeam.addPlayer(board.getOverallBoard().get(4));
+        board.getOverallBoard().remove(4);
+        myTeam.addPlayer(board.getOverallBoard().get(12));
+        board.getOverallBoard().remove(12);
+        myTeam.addPlayer(board.getOverallBoard().get(23));
+        board.getOverallBoard().remove(23);
+        for (Player plyr : myTeam.getTeamRoster()) {
+            System.out.println(plyr.toString());
+        }
+       /* BoardAnalyzer.generateAverageC(board);
         BoardAnalyzer.generateStandardDeviations(board);
         System.out.println(BoardAnalyzer.getStandardDeviations().toString());
         BoardAnalyzer.generateStandardDeviationsPG(board);
@@ -35,6 +45,6 @@ public class Main {
         BoardAnalyzer.generateStandardDeviationsPF(board);
         System.out.println(BoardAnalyzer.getStandardDeviationsPF().toString());
         BoardAnalyzer.generateStandardDeviationsC(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsC().toString());
+        System.out.println(BoardAnalyzer.getStandardDeviationsC().toString());*/
     }
 }
