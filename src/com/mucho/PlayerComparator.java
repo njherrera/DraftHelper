@@ -7,6 +7,6 @@ public class PlayerComparator implements Comparator<Player> {
 
     @Override
     public int compare(Player x, Player y) {
-        return x.getFitsNeeds() - y.getFitsNeeds();
+        return y.getFitsNeeds() - x.getFitsNeeds();
     }
 }

@@ -1,5 +1,7 @@
 package com.mucho;
 
+import java.util.Objects;
+
 public class Player {
     /* draft board is composed of these
     HAS AN array of projected/actual stats
@@ -66,35 +68,36 @@ public class Player {
 
     public void setOutliers(Player averagePlayer, Player standardDeviations){
         StringBuilder outliers = new StringBuilder();
-        if (this.getFGPercentage() > averagePlayer.getFGPercentage() + standardDeviations.getFGPercentage()){
+        if (this.getFGPercentage() > averagePlayer.getFGPercentage() + (standardDeviations.getFGPercentage() / 2 )){
             outliers.append("FG, ");
         }
-        if (this.getFTPercentage() > averagePlayer.getFTPercentage() + standardDeviations.getFTPercentage()){
+        if (this.getFTPercentage() > averagePlayer.getFTPercentage() + (standardDeviations.getFTPercentage() / 2 )){
             outliers.append("FT, ");
         }
-        if (this.getThreePM() > averagePlayer.getThreePM() + standardDeviations.getThreePM()){
+        if (this.getThreePM() > averagePlayer.getThreePM() + (standardDeviations.getThreePM() / 2 )){
             outliers.append("3PM, ");
         }
-        if (this.getPTS() > averagePlayer.getPTS() + standardDeviations.getPTS()){
+        if (this.getPTS() > averagePlayer.getPTS() + (standardDeviations.getPTS() / 2 )){
             outliers.append("PTS, ");
         }
-        if (this.getTREB() > averagePlayer.getTREB() + standardDeviations.getTREB()){
+        if (this.getTREB() > averagePlayer.getTREB() + (standardDeviations.getTREB() / 2 )){
             outliers.append("REB, ");
         }
-        if (this.getAST() > averagePlayer.getAST() + standardDeviations.getAST()){
+        if (this.getAST() > averagePlayer.getAST() + (standardDeviations.getAST() / 2 )){
             outliers.append("AST, ");
         }
-        if (this.getSTL() > averagePlayer.getSTL() + standardDeviations.getSTL()){
+        if (this.getSTL() > averagePlayer.getSTL() + (standardDeviations.getSTL() / 2 )){
             outliers.append("STL, ");
         }
-        if (this.getBLK() > averagePlayer.getBLK() + standardDeviations.getBLK()){
+        if (this.getBLK() > averagePlayer.getBLK() + (standardDeviations.getBLK() / 2 )){
             outliers.append("BLK, ");
         }
-        if (this.getTO() < averagePlayer.getTO() - standardDeviations.getTO()){
+        if (this.getTO() < averagePlayer.getTO() - (standardDeviations.getTO() / 2 )){
             outliers.append("TO");
         }
+        positiveOutliers = outliers.toString();
     }
-
+    
     public String getPositions() {
         return positions;
     }

@@ -1,9 +1,6 @@
 package com.mucho;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Team {
 
@@ -42,16 +39,17 @@ public class Team {
         rosterSpots = spots;
     }
 
-    public void setBenchmarkStats(double FGPercentage, double FTPercentage, double threes, double points, double rebounds, double assists, double steals, double blocks, double turnovers){
-        benchmarkStats[0] = FGPercentage;
-        benchmarkStats[1] = FTPercentage;
-        benchmarkStats[2] =  threes;
-        benchmarkStats[3] = points;
-        benchmarkStats[4] = rebounds;
-        benchmarkStats[5] = assists;
-        benchmarkStats[6] = steals;
-        benchmarkStats[7] = blocks;
-        benchmarkStats[8] = turnovers;
+    // multiplying by spots in order to yield total stats needed (for example, the total blocks per game of your team might be 10)
+    public void setBenchmarkStats(double FGPercentage, double FTPercentage, double threes, double points, double rebounds, double assists, double steals, double blocks, double turnovers, int spots){
+        benchmarkStats[0] = FGPercentage * spots;
+        benchmarkStats[1] = FTPercentage * spots;
+        benchmarkStats[2] =  threes * spots;
+        benchmarkStats[3] = points * spots;
+        benchmarkStats[4] = rebounds * spots;
+        benchmarkStats[5] = assists * spots;
+        benchmarkStats[6] = steals * spots;
+        benchmarkStats[7] = blocks * spots;
+        benchmarkStats[8] = turnovers * spots;
     }
 
     public void addPlayer(Player addedPlayer){
@@ -71,6 +69,7 @@ public class Team {
     }
 
     // determine how far away from benchmarks for success a team is
+    // passing a draftboard in so that the method can use the average player as a baseline
     public void analyzeTeam(DraftBoard board){
         double neededFG = this.benchmarkStats[0] - this.totalStats[0];
         double neededFT = this.benchmarkStats[1] - this.totalStats[1];
@@ -87,31 +86,31 @@ public class Team {
         BoardAnalyzer.generateStandardDeviations(board);
         Player standardDeviations = BoardAnalyzer.getStandardDeviations();
         // determine whether you need good average production in FG percentage from the rest of your picks ("good" is defined as more than one standard deviation above normal)
-        if ((neededFG / (this.rosterSpots - teamRoster.size())) > averagePlayer.getFGPercentage() + standardDeviations.getFGPercentage()){
+        if ((neededFG / (this.rosterSpots - teamRoster.size())) > averagePlayer.getFGPercentage()){
             this.needsFG = true;
         }
-        if ((neededFT / (this.rosterSpots - teamRoster.size())) > averagePlayer.getFTPercentage() + standardDeviations.getFTPercentage()){
+        if ((neededFT / (this.rosterSpots - teamRoster.size())) > averagePlayer.getFTPercentage()){
             this.needsFT = true;
         }
-        if ((neededThrees / (this.rosterSpots - teamRoster.size())) > averagePlayer.getThreePM() + standardDeviations.getThreePM()){
+        if ((neededThrees / (this.rosterSpots - teamRoster.size())) > averagePlayer.getThreePM()){
             this.needsThrees = true;
         }
-        if ((neededPTS / (this.rosterSpots - teamRoster.size())) > averagePlayer.getPTS() + standardDeviations.getPTS()){
+        if ((neededPTS / (this.rosterSpots - teamRoster.size())) > averagePlayer.getPTS() ){
             this.needsPTS = true;
         }
-        if ((neededREB / (this.rosterSpots - teamRoster.size())) > averagePlayer.getTREB() + standardDeviations.getTREB()){
+        if ((neededREB / (this.rosterSpots - teamRoster.size())) > averagePlayer.getTREB()){
             this.needsREB = true;
         }
-        if ((neededAST / (this.rosterSpots - teamRoster.size())) > averagePlayer.getAST() + standardDeviations.getAST()){
+        if ((neededAST / (this.rosterSpots - teamRoster.size())) > averagePlayer.getAST()){
             this.needsAST = true;
         }
-        if ((neededSTL / (this.rosterSpots - teamRoster.size())) > averagePlayer.getSTL() + standardDeviations.getSTL()){
+        if ((neededSTL / (this.rosterSpots - teamRoster.size())) > averagePlayer.getSTL()){
             this.needsSTL = true;
         }
-        if ((neededBLK / (this.rosterSpots - teamRoster.size())) > averagePlayer.getBLK() + standardDeviations.getBLK()){
+        if ((neededBLK / (this.rosterSpots - teamRoster.size())) > averagePlayer.getBLK()){
             this.needsBLK = true;
         }
-        if ((remainingTO / (this.rosterSpots - teamRoster.size())) < averagePlayer.getTO() - standardDeviations.getTO()){
+        if ((remainingTO / (this.rosterSpots - teamRoster.size())) < averagePlayer.getTO()){
             this.needsLessTOs = true;
         }
     }
@@ -270,5 +269,47 @@ public class Team {
 
     public void setTeamRoster(ArrayList<Player> teamRoster) {
         this.teamRoster = teamRoster;
+    }
+
+    public double[] getTotalStats() {
+        return totalStats;
+    }
+
+    public void setTotalStats(double[] totalStats) {
+        this.totalStats = totalStats;
+    }
+
+    public double[] getPerGameStats() {
+        return perGameStats;
+    }
+
+    public void setPerGameStats(double[] perGameStats) {
+        this.perGameStats = perGameStats;
+    }
+
+    public double[] getBenchmarkStats() {
+        return benchmarkStats;
+    }
+
+    public void setBenchmarkStats(double[] benchmarkStats) {
+        this.benchmarkStats = benchmarkStats;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "totalStats=" + Arrays.toString(totalStats) +
+                ", perGameStats=" + Arrays.toString(perGameStats) +
+                ", benchmarkStats=" + Arrays.toString(benchmarkStats) +
+                ", needsFG=" + needsFG +
+                ", needsFT=" + needsFT +
+                ", needsThrees=" + needsThrees +
+                ", needsPTS=" + needsPTS +
+                ", needsREB=" + needsREB +
+                ", needsAST=" + needsAST +
+                ", needsSTL=" + needsSTL +
+                ", needsBLK=" + needsBLK +
+                ", needsLessTOs=" + needsLessTOs +
+                '}';
     }
 }
