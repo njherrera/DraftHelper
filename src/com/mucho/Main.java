@@ -14,12 +14,11 @@ public class Main {
 	X Player class
 	X Season/Projections/PlayerStats class
 	X ExcelReader + prototype of DraftBoard
-	Team analysis
-	Player recommending
+	X Team analysis
+	X Player recommending
 	Recommending with quotas
 	Actual DraftBoard (might need to use netbeans to design GUI)
 
-	merge ExcelReader and DraftBoard? right now separation seems arbitrary, with generating average players making sense as part of DraftBoard
 	 */
 
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");

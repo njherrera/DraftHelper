@@ -97,7 +97,7 @@ public class Player {
         }
         positiveOutliers = outliers.toString();
     }
-    
+
     public String getPositions() {
         return positions;
     }
