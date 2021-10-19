@@ -1,5 +1,8 @@
 package com.mucho;
 
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+
 import java.sql.Array;
 import java.util.ArrayList;
 
@@ -45,6 +48,7 @@ public class DraftBoard {
     // generateBoards reads the excel file with projections/stats for each player, then goes through line by line and adds each player to draft boards
     // if cell 0 in a row is R#, that means it isn't a player row and instead has headers for the stat categories
     public void generateBoards(ExcelReader reader){
+        DataFormatter formatter = new DataFormatter();
         for (int i = 1; i < reader.getImportedBoard().getLastRowNum(); i++) {
             if (reader.getImportedBoard().getRow(i).getCell(0).toString().equals("R#") != true) {
                 String[] FGPercentageSplit = reader.getImportedBoard().getRow(i).getCell(7).toString().split("\\s*[()]\\s*");
@@ -57,6 +61,11 @@ public class DraftBoard {
                         reader.getImportedBoard().getRow(i).getCell(11).getNumericCellValue(), reader.getImportedBoard().getRow(i).getCell(12).getNumericCellValue(),
                         reader.getImportedBoard().getRow(i).getCell(13).getNumericCellValue(), reader.getImportedBoard().getRow(i).getCell(14).getNumericCellValue(),
                         reader.getImportedBoard().getRow(i).getCell(15).getNumericCellValue(), reader.getImportedBoard().getRow(i).getCell(16).getNumericCellValue());
+                if (reader.getImportedBoard().getRow(i).getCell(1).getCellType() == CellType.NUMERIC){
+                    newPlayer.setAverageDraftPosition(reader.getImportedBoard().getRow(i).getCell(1).getNumericCellValue());
+                } else {
+                    newPlayer.setAverageDraftPosition(i);
+                }
                 overallBoard.add(newPlayer);
                 if (newPlayer.getPositions().contains("PG")){
                     PGBoard.add(newPlayer);
@@ -78,7 +87,7 @@ public class DraftBoard {
         BoardAnalyzer.generateAveragePlayer(this);
         BoardAnalyzer.generateStandardDeviations(this);
         for (Player plyr : this.overallBoard) {
-            plyr.setOutliers(BoardAnalyzer.getAveragePlayer(), BoardAnalyzer.getStandardDeviations());
+            plyr.setPositiveOutliers(BoardAnalyzer.getAveragePlayer(), BoardAnalyzer.getStandardDeviations());
         }
     }
 

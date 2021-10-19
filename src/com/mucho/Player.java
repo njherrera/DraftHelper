@@ -28,8 +28,9 @@ public class Player {
     private double BLK;
     private double TO;
     private double HashtagScore;
+    private double averageDraftPosition;
     private String positiveOutliers;
-    private String negativeOutliers; // should this only count FG%/FT%/TO, i.e. categories where a player can actively hurt you?
+    private String negativeOutliers; // only counts FG%/FT%/TO, categories where player can actively hurt you
     private int fitsNeeds;
 
     public Player(String pos, String playerName, double gp, double fg, double ft, double threes, double points,
@@ -66,7 +67,8 @@ public class Player {
         this.HashtagScore = 0;
     }
 
-    public void setOutliers(Player averagePlayer, Player standardDeviations){
+    // dividing standard deviation by two, since an entire standard deviation is pretty big
+    public void setPositiveOutliers(Player averagePlayer, Player standardDeviations){
         StringBuilder outliers = new StringBuilder();
         if (this.getFGPercentage() > averagePlayer.getFGPercentage() + (standardDeviations.getFGPercentage() / 2 )){
             outliers.append("FG, ");
@@ -96,6 +98,10 @@ public class Player {
             outliers.append("TO");
         }
         positiveOutliers = outliers.toString();
+    }
+
+    public void setNegativeOutliers(Player averagePlayer, Player standardDeviations){
+
     }
 
     public String getPositions() {
@@ -222,6 +228,14 @@ public class Player {
 
     public int getFitsNeeds() { return fitsNeeds; }
 
+    public double getAverageDraftPosition() {
+        return averageDraftPosition;
+    }
+
+    public void setAverageDraftPosition(double averageDraftPosition) {
+        this.averageDraftPosition = averageDraftPosition;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -238,6 +252,7 @@ public class Player {
                 ", BLK=" + BLK +
                 ", TO=" + TO +
                 ", HashtagScore=" + HashtagScore +
+                ", Average Draft Position= " + averageDraftPosition +
                 ", positiveOutliers='" + positiveOutliers + '\'' +
                 ", negativeOutliers='" + negativeOutliers + '\'' +
                 '}';
