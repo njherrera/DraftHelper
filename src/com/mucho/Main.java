@@ -16,6 +16,7 @@ public class Main {
 	X ExcelReader + prototype of DraftBoard
 	X Team analysis
 	X Player recommending
+	Calculating FG and FT% by using FGA/FTA and FGM/FTM
 	Recommending with quotas
 	Actual DraftBoard (might need to use netbeans to design GUI)
 
