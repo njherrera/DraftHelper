@@ -17,7 +17,12 @@ public class Main {
 	X Team analysis
 	X Player recommending
 	Identifying players with negative fantasy impact
+	    this could be basis of how to implement punting
+	    rework fitsNeeds so that total number is needs met - negative outliers
+	    give user ability to select negative category to ignore
+	        i.e. if user is "punting" FG%, don't factor negative FG% into fitsNeeds
 	Calculating FG and FT% by using FGA/FTA and FGM/FTM
+	Recommending players that have production >= needed per game totals to meet benchmarks
 	Recommending with quotas
 	Identifying players that are likely to slide using ADP
 	Actual DraftBoard (might need to use netbeans to design GUI)

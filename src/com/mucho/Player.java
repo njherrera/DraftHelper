@@ -1,5 +1,6 @@
 package com.mucho;
 
+
 import java.util.Objects;
 
 public class Player {
@@ -101,7 +102,18 @@ public class Player {
     }
 
     public void setNegativeOutliers(Player averagePlayer, Player standardDeviations){
+        StringBuilder outliers = new StringBuilder();
 
+        if (this.getFGPercentage() < averagePlayer.getFGPercentage() - (standardDeviations.getFGPercentage() / 2)){
+            outliers.append("FG, ");
+        }
+        if (this.getFTPercentage() < averagePlayer.getFTPercentage() - (standardDeviations.getFTPercentage() / 2)){
+            outliers.append("FT, ");
+        }
+        if (this.getTO() > averagePlayer.getTO() + (standardDeviations.getTO() / 2)){
+            outliers.append("TO");
+        }
+        negativeOutliers = outliers.toString();
     }
 
     public String getPositions() {
