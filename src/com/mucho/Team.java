@@ -11,6 +11,10 @@ public class Team {
     private int PFQuota;
     private int CQuota;
     private int rosterSpots;
+    private double FGA; // FGA = field goals attempted, used to calculate FG% of team more accurately
+    private double FGM;
+    private double FTA; // FTA = free throws attempted, used to calculate FT% of team more accurately
+    private double FTM;
     private double[] totalStats = new double[9];
     private double[] perGameStats = new double[9];
     private double[] benchmarkStats = new double[9]; // holds the "benchmarks" to reach (what it takes to win each category)
@@ -54,8 +58,12 @@ public class Team {
 
     public void addPlayer(Player addedPlayer){
         teamRoster.add(addedPlayer);
-        totalStats[0] += addedPlayer.getFGPercentage();
-        totalStats[1] += addedPlayer.getFTPercentage();
+        FGM += addedPlayer.getFGMade();
+        FGA += addedPlayer.getFGAttempted();
+        FTM += addedPlayer.getFTMade();
+        FTA += addedPlayer.getFTAttempted();
+        totalStats[0] = FGM / FGA;
+        totalStats[1] = FTM / FTA;
         totalStats[2] += addedPlayer.getThreePM();
         totalStats[3] += addedPlayer.getPTS();
         totalStats[4] += addedPlayer.getTREB();

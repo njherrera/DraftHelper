@@ -16,12 +16,15 @@ public class Main {
 	X ExcelReader + prototype of DraftBoard
 	X Team analysis
 	X Player recommending
+	X Calculating FG and FT% by using FGA/FTA and FGM/FTM
 	Identifying players with negative fantasy impact
 	    this could be basis of how to implement punting
+	        for best punting implementation, calculating each player's z-score would probably be best
+	            could then use z-score for an additional comparator
+	        z-score would actually be easy to implement, since it's how many standard deviations a player is from average
 	    rework fitsNeeds so that total number is needs met - negative outliers
 	    give user ability to select negative category to ignore
 	        i.e. if user is "punting" FG%, don't factor negative FG% into fitsNeeds
-	Calculating FG and FT% by using FGA/FTA and FGM/FTM
 	Recommending players that have production >= needed per game totals to meet benchmarks
 	Recommending with quotas
 	Identifying players that are likely to slide using ADP
@@ -52,19 +55,19 @@ public class Main {
 //        for (Player plyr : myTeam.recommendAPlayer(board)) {
 //            System.out.println(plyr.toString());
 //        }
-        BoardAnalyzer.generateAveragePlayer(board);
-        System.out.println(BoardAnalyzer.getAveragePlayer().toString());
-        BoardAnalyzer.generateStandardDeviations(board);
-        System.out.println(BoardAnalyzer.getStandardDeviations().toString());
-        BoardAnalyzer.generateStandardDeviationsPG(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsPG().toString());
-        BoardAnalyzer.generateStandardDeviationsSG(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsSG().toString());
-        BoardAnalyzer.generateStandardDeviationsSF(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsSF().toString());
-        BoardAnalyzer.generateStandardDeviationsPF(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsPF().toString());
-        BoardAnalyzer.generateStandardDeviationsC(board);
-        System.out.println(BoardAnalyzer.getStandardDeviationsC().toString());
+//        BoardAnalyzer.generateAveragePlayer(board);
+//        System.out.println(BoardAnalyzer.getAveragePlayer().toString());
+//        BoardAnalyzer.generateStandardDeviations(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviations().toString());
+//        BoardAnalyzer.generateStandardDeviationsPG(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviationsPG().toString());
+//        BoardAnalyzer.generateStandardDeviationsSG(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviationsSG().toString());
+//        BoardAnalyzer.generateStandardDeviationsSF(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviationsSF().toString());
+//        BoardAnalyzer.generateStandardDeviationsPF(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviationsPF().toString());
+//        BoardAnalyzer.generateStandardDeviationsC(board);
+//        System.out.println(BoardAnalyzer.getStandardDeviationsC().toString());
     }
 }

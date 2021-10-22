@@ -20,7 +20,11 @@ public class Player {
     private String name;
     private double gamesPlayed;
     private double FGPercentage;
+    private double FGAttempted;
+    private double FGMade;
     private double FTPercentage;
+    private double FTAttempted;
+    private double FTMade;
     private double threePM;
     private double PTS;
     private double TREB;
@@ -34,13 +38,13 @@ public class Player {
     private String negativeOutliers; // only counts FG%/FT%/TO, categories where player can actively hurt you
     private int fitsNeeds;
 
-    public Player(String pos, String playerName, double gp, double fg, double ft, double threes, double points,
+    public Player(String pos, String playerName, double gp, double fgpercentage, double ftpercentage, double threes, double points,
                   double reb, double assists, double steals, double blocks, double turnovers, double htscore) {
         this.positions = pos;
         this.name = playerName;
         this.gamesPlayed = gp;
-        this.FGPercentage = fg;
-        this.FTPercentage = ft;
+        this.FGPercentage = fgpercentage;
+        this.FTPercentage = ftpercentage;
         this.threePM = threes;
         this.PTS = points;
         this.TREB = reb;
@@ -246,6 +250,33 @@ public class Player {
 
     public void setAverageDraftPosition(double averageDraftPosition) {
         this.averageDraftPosition = averageDraftPosition;
+    }
+
+    public void setFGAttemptedAndMade(double fgm, double fga){
+        this.FGAttempted = fga;
+        this.FGMade = fgm;
+    }
+
+    public void setFTAttemptedAndMade(double ftm, double fta){
+        this.FTMade = ftm;
+        this.FTAttempted = fta;
+    }
+
+    public double getFGAttempted() {
+        return FGAttempted;
+    }
+
+    public double getFGMade() {
+        return FGMade;
+    }
+
+    public double getFTAttempted() {
+        return FTAttempted;
+    }
+
+
+    public double getFTMade() {
+        return FTMade;
     }
 
     @Override
