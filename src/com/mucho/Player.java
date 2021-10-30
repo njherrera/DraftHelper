@@ -37,6 +37,7 @@ public class Player {
     private String positiveOutliers;
     private String negativeOutliers; // only counts FG%/FT%/TO, categories where player can actively hurt you
     private int fitsNeeds;
+    private double zScore;
 
     public Player(String pos, String playerName, double gp, double fgpercentage, double ftpercentage, double threes, double points,
                   double reb, double assists, double steals, double blocks, double turnovers, double htscore) {
@@ -118,6 +119,19 @@ public class Player {
             outliers.append("TO");
         }
         negativeOutliers = outliers.toString();
+    }
+    // generate z score by seeing how many standard deviations above or below the average player they are
+    public void generateZScore(DraftBoard board){
+        double zScoreCounter = 0;
+        BoardAnalyzer.generateAveragePlayer(board);
+        BoardAnalyzer.generateStandardDeviations(board);
+        Player averagePlayer = BoardAnalyzer.getAveragePlayer();
+        Player standardDeviations = BoardAnalyzer.getStandardDeviations();
+
+        double FGDiff = FGPercentage - averagePlayer.getFGPercentage();
+        double stdevsFGPercentage = FGDiff / standardDeviations.getFGPercentage();
+        zScoreCounter = zScoreCounter + stdevsFGPercentage;
+        zScore = zScoreCounter;
     }
 
     public String getPositions() {
@@ -277,6 +291,14 @@ public class Player {
 
     public double getFTMade() {
         return FTMade;
+    }
+
+    public double getzScore() {
+        return zScore;
+    }
+
+    public void setzScore(double zScore) {
+        this.zScore = zScore;
     }
 
     @Override

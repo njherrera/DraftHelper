@@ -33,9 +33,11 @@ public class Main {
 
 	 */
 
-        ExcelReader testReader = new ExcelReader("C:/Users/natha/OneDrive/Documents/HashtagBasketball20212022Projections.xlsx");
+        ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
+        board.getOverallBoard().get(0).generateZScore(board);
+        System.out.println(board.getOverallBoard().get(0).getzScore());
 //        Team myTeam = new Team(12);
 //        myTeam.addPlayer(board.getOverallBoard().get(40));
 //        board.getOverallBoard().remove(40);
