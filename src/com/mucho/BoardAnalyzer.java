@@ -180,7 +180,7 @@ public class BoardAnalyzer {
 
     // creates a player object, which houses the standard deviations for a position (in this case, standard deviations for all positions)
     public static void generateStandardDeviations(DraftBoard board){
-        Player stdDevAllPositions = new Player("all positions", "standard deviations - all positions", 0, generateStandardDeviationFG(board.getOverallBoard()),
+        Player stdDevAllPositions =     new Player("all positions", "standard deviations - all positions", 0, generateStandardDeviationFG(board.getOverallBoard()),
                 generateStandardDeviationFT(board.getOverallBoard()), generateStandardDeviationThrees(board.getOverallBoard()), generateStandardDeviationPTS(board.getOverallBoard()),
                 generateStandardDeviationTREB(board.getOverallBoard()), generateStandardDeviationAST(board.getOverallBoard()), generateStandardDeviationSTL(board.getOverallBoard()),
                 generateStandardDeviationBLK(board.getOverallBoard()), generateStandardDeviationTO(board.getOverallBoard()), 0);

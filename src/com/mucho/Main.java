@@ -21,7 +21,7 @@ public class Main {
 	    this could be basis of how to implement punting
 	        for best punting implementation, calculating each player's z-score would probably be best
 	            could then use z-score for an additional comparator
-	        z-score would actually be easy to implement, since it's how many standard deviations a player is from average
+	        z-score would actually be easy to implement, since it' s how many standard deviations a player is from average
 	    rework fitsNeeds so that total number is needs met - negative outliers
 	    give user ability to select negative category to ignore
 	        i.e. if user is "punting" FG%, don't factor negative FG% into fitsNeeds
