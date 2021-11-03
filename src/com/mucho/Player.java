@@ -122,55 +122,70 @@ public class Player {
     }
     // generate z score by seeing how many standard deviations above or below the average player they are
     // find difference of each stat between given player and average player's, then figure out how many std devs away from average it is
-    public void generateZScore(DraftBoard board){
+    // add ability to ignore some categories when generating z score?
+    // maybe pass in a string of categories to ignore, surround each calculation with if statement
+    // if (!input.contains("X")), add z score of X to total
+    public void generateZScore(DraftBoard board, String excludedCats){
         double zScoreCounter = 0;
         BoardAnalyzer.generateAveragePlayer(board);
         BoardAnalyzer.generateStandardDeviations(board);
         Player averagePlayer = BoardAnalyzer.getAveragePlayer();
         Player standardDeviations = BoardAnalyzer.getStandardDeviations();
 
+        if (excludedCats.equals("none") || !excludedCats.contains("FG")) {
+            double FGDiff = FGPercentage - averagePlayer.getFGPercentage();
+            double FGPercentageZscore = FGDiff / standardDeviations.getFGPercentage();
+            zScoreCounter = zScoreCounter + FGPercentageZscore;
+        }
 
-        double FGDiff = FGPercentage - averagePlayer.getFGPercentage();
-        double FGPercentageZscore = FGDiff / standardDeviations.getFGPercentage();
-        zScoreCounter = zScoreCounter + FGPercentageZscore;
+        if (excludedCats.equals("none") || !excludedCats.contains("FT")) {
+            double FTDiff = FTPercentage - averagePlayer.getFTPercentage();
+            double FTPercentageZscore = FTDiff / standardDeviations.getFTPercentage();
+            zScoreCounter = zScoreCounter + FTPercentageZscore;
+        }
 
+        if (excludedCats.equals("none") || !excludedCats.contains("ThreePM")) {
+            double ThreeDiff = threePM - averagePlayer.getThreePM();
+            double threesZscore = ThreeDiff / standardDeviations.getThreePM();
+            zScoreCounter = zScoreCounter + threesZscore;
+        }
 
-        double FTDiff = FTPercentage - averagePlayer.getFTPercentage();
-        double FTPercentageZscore = FTDiff / standardDeviations.getFTPercentage();
-        zScoreCounter = zScoreCounter + FTPercentageZscore;
+        if (excludedCats.equals("none") || !excludedCats.contains("PTS")) {
+            double PTSDiff = PTS - averagePlayer.getPTS();
+            double PTSZscore = PTSDiff / standardDeviations.getPTS();
+            zScoreCounter = zScoreCounter + PTSZscore;
+        }
 
+        if (excludedCats.equals("none") || !excludedCats.contains("TREB")) {
+            double REBDiff = TREB - averagePlayer.getTREB();
+            double REBZscore = REBDiff / standardDeviations.getTREB();
+            zScoreCounter = zScoreCounter + REBZscore;
+        }
 
-        double ThreeDiff = threePM - averagePlayer.getThreePM();
-        double threesZscore = ThreeDiff / standardDeviations.getThreePM();
-        zScoreCounter = zScoreCounter + threesZscore;
+        if (excludedCats.equals("none") || !excludedCats.contains("AST")) {
+            double ASTDiff = AST - averagePlayer.getAST();
+            double ASTZscore = ASTDiff / standardDeviations.getAST();
+            zScoreCounter = zScoreCounter + ASTZscore;
+        }
 
+        if(excludedCats.equals("none") || !excludedCats.contains("STL")) {
+            double STLDiff = STL - averagePlayer.getSTL();
+            double STLZscore = STLDiff / standardDeviations.getSTL();
+            zScoreCounter = zScoreCounter + STLZscore;
+        }
 
-
-
-        double PTSDiff = PTS - averagePlayer.getPTS();
-        double PTSZscore = PTSDiff / standardDeviations.getPTS();
-        zScoreCounter = zScoreCounter + PTSZscore;
-
-        double REBDiff = TREB - averagePlayer.getTREB();
-        double REBZscore = REBDiff / standardDeviations.getTREB();
-        zScoreCounter = zScoreCounter + REBZscore;
-
-        double ASTDiff = AST - averagePlayer.getAST();
-        double ASTZscore = ASTDiff / standardDeviations.getAST();
-        zScoreCounter = zScoreCounter + ASTZscore;
-
-        double STLDiff = STL - averagePlayer.getSTL();
-        double STLZscore = STLDiff / standardDeviations.getSTL();
-        zScoreCounter = zScoreCounter + STLZscore;
-
-        double BLKDiff = BLK - averagePlayer.getBLK();
-        double BLKZscore = BLKDiff / standardDeviations.getBLK();
-        zScoreCounter = zScoreCounter + BLKZscore;
+        if(excludedCats.equals("none") || !excludedCats.contains("BLK")) {
+            double BLKDiff = BLK - averagePlayer.getBLK();
+            double BLKZscore = BLKDiff / standardDeviations.getBLK();
+            zScoreCounter = zScoreCounter + BLKZscore;
+        }
 
         //subtracting from zscore here because TOs have negative value
-        double TODIff = TO - averagePlayer.getTO();
-        double TOZscore = TODIff / standardDeviations.getTO();
-        zScoreCounter = zScoreCounter - TOZscore;
+        if(excludedCats.equals("none") || !excludedCats.contains("TO")) {
+            double TODIff = TO - averagePlayer.getTO();
+            double TOZscore = TODIff / standardDeviations.getTO();
+            zScoreCounter = zScoreCounter - TOZscore;
+        }
 
         zScore = zScoreCounter;
     }
