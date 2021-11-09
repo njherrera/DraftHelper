@@ -37,6 +37,7 @@ public class Player {
     private String positiveOutliers;
     private String negativeOutliers; // only counts FG%/FT%/TO, categories where player can actively hurt you
     private int fitsNeeds;
+    private int negativeCats;
     private double zScore;
 
     public Player(String pos, String playerName, double gp, double fgpercentage, double ftpercentage, double threes, double points,

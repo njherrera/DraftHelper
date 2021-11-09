@@ -17,13 +17,13 @@ public class Main {
 	X Team analysis
 	X Player recommending
 	X Calculating FG and FT% by using FGA/FTA and FGM/FTM
-	Identifying players with negative fantasy impact
+	X Identifying players with negative fantasy impact
 	    this could be basis of how to implement punting
 	        for best punting implementation, calculating each player's z-score would probably be best
 	            could then use z-score for an additional comparator
 	        z-score would actually be easy to implement, since it' s how many standard deviations a player is from average
-	    rework fitsNeeds so that total number is needs met - negative outliers
-	    give user ability to select negative category to ignore
+	X    rework fitsNeeds so that total number is needs met - negative outliers
+	X    give user ability to select negative category to ignore
 	        i.e. if user is "punting" FG%, don't factor negative FG% into fitsNeeds
 	Recommending players that have production >= needed per game totals to meet benchmarks
 	Recommending with quotas
@@ -33,11 +33,11 @@ public class Main {
 
 	 */
 
-        ExcelReader testReader = new ExcelReader("C:/Users/natha/OneDrive/Documents/HashtagBasketball20212022Projections.xlsx");
+        ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
-        board.getOverallBoard().get(0).generateZScore(board, "TO");
-        System.out.println(board.getOverallBoard().get(0).getzScore());
+        board.getOverallBoard().get(167).generateZScore(board, "TO");
+        System.out.println(board.getOverallBoard().get(167).getzScore());
 //        Team myTeam = new Team(12);
 //        myTeam.addPlayer(board.getOverallBoard().get(40));
 //        board.getOverallBoard().remove(40);

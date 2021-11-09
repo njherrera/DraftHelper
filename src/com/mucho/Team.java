@@ -236,10 +236,20 @@ public class Team {
         return convertRecommendationsToList(recommendations);
     }
 
+    // add each entry of the recommended players map to an arraylist of players, then sort using playercomparator
     public ArrayList<Player> convertRecommendationsToList(HashMap<Player, Integer> recommendations){
         ArrayList<Player> listOfRecommendations = new ArrayList<Player>();
         for (Map.Entry<Player, Integer> entry : recommendations.entrySet()) {
             entry.getKey().setFitsNeeds(entry.getValue());
+            if (this.needsLessTOs == true && entry.getKey().getNegativeOutliers().contains("TO")){
+                entry.getKey().setFitsNeeds(entry.getKey().getFitsNeeds() - 1);
+            }
+            if (this.needsFG == true && entry.getKey().getNegativeOutliers().contains("FG")){
+                entry.getKey().setFitsNeeds(entry.getKey().getFitsNeeds() - 1);
+            }
+            if (this.needsFT == true && entry.getKey().getNegativeOutliers().contains("FT")){
+                entry.getKey().setFitsNeeds(entry.getKey().getFitsNeeds() - 1);
+            }
             listOfRecommendations.add(entry.getKey());
         }
         Collections.sort(listOfRecommendations, new PlayerComparator());
