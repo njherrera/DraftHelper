@@ -25,6 +25,8 @@ public class Main {
 	X    rework fitsNeeds so that total number is needs met - negative outliers
 	X    give user ability to select negative category to ignore
 	        i.e. if user is "punting" FG%, don't factor negative FG% into fitsNeeds
+	X Add zscore comparator
+	Write command line prototype
 	Recommending players that have production >= needed per game totals to meet benchmarks
 	Recommending with quotas
 	Identifying players that are likely to slide using ADP
@@ -36,27 +38,27 @@ public class Main {
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
-        board.getOverallBoard().get(167).generateZScore(board, "TO");
-        System.out.println(board.getOverallBoard().get(167).getzScore());
-//        Team myTeam = new Team(12);
-//        myTeam.addPlayer(board.getOverallBoard().get(40));
-//        board.getOverallBoard().remove(40);
-//        myTeam.addPlayer(board.getOverallBoard().get(35));
-//        board.getOverallBoard().remove(35);
-//        myTeam.addPlayer(board.getOverallBoard().get(30));
-//        board.getOverallBoard().remove(30);
-//        for (Player plyr : myTeam.getTeamRoster()) {
-//            System.out.println(plyr.toString());
-//        }
-//        myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
-//        myTeam.analyzeTeam(board);
-//        board.flagPlayers();
-//        System.out.println(Arrays.toString(myTeam.getPerGameStats()));
-//        System.out.println(Arrays.toString(myTeam.getBenchmarkStats()));
-//        System.out.println(myTeam.toString());
-//        for (Player plyr : myTeam.recommendAPlayer(board)) {
-//            System.out.println(plyr.toString());
-//        }
+//        board.getOverallBoard().get(167).generateZScore(board, "TO");
+//        System.out.println(board.getOverallBoard().get(167).getzScore());
+        Team myTeam = new Team(12);
+        myTeam.addPlayer(board.getOverallBoard().get(40));
+        board.getOverallBoard().remove(40);
+        myTeam.addPlayer(board.getOverallBoard().get(35));
+        board.getOverallBoard().remove(35);
+        myTeam.addPlayer(board.getOverallBoard().get(30));
+        board.getOverallBoard().remove(30);
+        for (Player plyr : myTeam.getTeamRoster()) {
+            System.out.println(plyr.toString());
+        }
+        myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
+        myTeam.analyzeTeam(board);
+        board.flagPlayers();
+        System.out.println(Arrays.toString(myTeam.getPerGameStats()));
+        System.out.println(Arrays.toString(myTeam.getBenchmarkStats()));
+        System.out.println(myTeam.toString());
+        for (Player plyr : myTeam.recommendAPlayer(board)) {
+            System.out.println(plyr.toString());
+        }
 //        BoardAnalyzer.generateAveragePlayer(board);
 //        System.out.println(BoardAnalyzer.getAveragePlayer().toString());
 //        BoardAnalyzer.generateStandardDeviations(board);

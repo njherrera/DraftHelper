@@ -124,7 +124,7 @@ public class Team {
     }
 
     public ArrayList<Player> recommendAPlayer(DraftBoard board){
-        HashMap<Player, Integer> recommendations = new HashMap<Player, Integer>(    );
+        HashMap<Player, Integer> recommendations = new HashMap<Player, Integer>();
         if (this.needsFG == true){
             for(Player plyr : board.getOverallBoard()){
                 if (plyr.getPositiveOutliers().contains("FG")){
@@ -259,6 +259,7 @@ public class Team {
             topPlayers.add(listOfRecommendations.get(counter));
             counter++;
         }
+        Collections.sort(listOfRecommendations, new zScoreComparator());
         return topPlayers;
     }
     /*public Player recommendAPG(){

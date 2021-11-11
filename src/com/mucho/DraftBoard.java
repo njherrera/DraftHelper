@@ -115,6 +115,7 @@ public class DraftBoard {
         BoardAnalyzer.generateStandardDeviations(this);
         for (Player plyr : this.overallBoard) {
             plyr.setPositiveOutliers(BoardAnalyzer.getAveragePlayer(), BoardAnalyzer.getStandardDeviations());
+            plyr.setNegativeOutliers(BoardAnalyzer.getAveragePlayer(), BoardAnalyzer.getStandardDeviations());
         }
     }
 
