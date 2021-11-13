@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DraftBoard {
     /*
@@ -22,6 +23,7 @@ public class DraftBoard {
     private ArrayList<Player> SFBoard;
     private ArrayList<Player> PFBoard;
     private ArrayList<Player> CBoard;
+    private HashMap<String, Player> playerMap = new HashMap<String, Player>();
     private static Player averagePlayer;
     private static Player averagePG;
     private static Player averageSG;
@@ -69,6 +71,7 @@ public class DraftBoard {
                     newPlayer.setAverageDraftPosition(i);
                 }
                 overallBoard.add(newPlayer);
+                playerMap.put(newPlayer.getName(), newPlayer);
                 if (newPlayer.getPositions().contains("PG")){
                     PGBoard.add(newPlayer);
                 } if (newPlayer.getPositions().contains("SG")){
@@ -81,6 +84,9 @@ public class DraftBoard {
                     CBoard.add(newPlayer);
                 }
             }
+        }
+        for (Player plyr : getOverallBoard()){
+            plyr.generateZScore(this, "none");
         }
     }
 
@@ -165,5 +171,9 @@ public class DraftBoard {
 
     public void setCBoard(ArrayList<Player> CBoard) {
         this.CBoard = CBoard;
+    }
+
+    public HashMap<String, Player> getPlayerMap(){
+        return this.playerMap;
     }
 }

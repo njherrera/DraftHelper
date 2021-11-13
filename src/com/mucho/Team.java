@@ -259,7 +259,7 @@ public class Team {
             topPlayers.add(listOfRecommendations.get(counter));
             counter++;
         }
-        Collections.sort(listOfRecommendations, new zScoreComparator());
+        Collections.sort(topPlayers, new zScoreComparator());
         return topPlayers;
     }
     /*public Player recommendAPG(){

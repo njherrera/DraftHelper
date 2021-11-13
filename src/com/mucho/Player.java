@@ -377,6 +377,7 @@ public class Player {
                 ", Average Draft Position= " + averageDraftPosition +
                 ", positiveOutliers='" + positiveOutliers + '\'' +
                 ", negativeOutliers='" + negativeOutliers + '\'' +
+                ", zScore=" + zScore + '\'' +
                 '}';
     }
 

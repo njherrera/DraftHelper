@@ -5,6 +5,8 @@ import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -38,27 +40,60 @@ public class Main {
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
+
 //        board.getOverallBoard().get(167).generateZScore(board, "TO");
 //        System.out.println(board.getOverallBoard().get(167).getzScore());
         Team myTeam = new Team(12);
-        myTeam.addPlayer(board.getOverallBoard().get(40));
-        board.getOverallBoard().remove(40);
-        myTeam.addPlayer(board.getOverallBoard().get(35));
-        board.getOverallBoard().remove(35);
-        myTeam.addPlayer(board.getOverallBoard().get(30));
-        board.getOverallBoard().remove(30);
-        for (Player plyr : myTeam.getTeamRoster()) {
-            System.out.println(plyr.toString());
-        }
         myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
-        myTeam.analyzeTeam(board);
-        board.flagPlayers();
-        System.out.println(Arrays.toString(myTeam.getPerGameStats()));
-        System.out.println(Arrays.toString(myTeam.getBenchmarkStats()));
-        System.out.println(myTeam.toString());
-        for (Player plyr : myTeam.recommendAPlayer(board)) {
-            System.out.println(plyr.toString());
+        System.out.println("Best available player: " + board.getOverallBoard().get(0).toString());
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        while (input != null){
+            List<String> inputPlayer = Arrays.asList(input.split(","));
+            if (Integer.parseInt(inputPlayer.get(1)) == 0) {
+                myTeam.addPlayer(board.getPlayerMap().get(inputPlayer.get(0)));
+            }
+            Player toBeRemoved = board.getPlayerMap().get(inputPlayer.get(0));
+            System.out.println(toBeRemoved.toString());
+            myTeam.analyzeTeam(board);
+            board.flagPlayers();
+            System.out.println(myTeam.toString());
+            int indexOfRemovedPlayer = 0;
+            for (Player plyr : board.getOverallBoard()){
+                if (plyr.getName().equals(toBeRemoved.getName())){
+                    indexOfRemovedPlayer = board.getOverallBoard().indexOf(plyr);
+                }
+            }
+            board.getOverallBoard().remove(indexOfRemovedPlayer);
+            System.out.println("Best available player: " + board.getOverallBoard().get(0));
+            for (Player plyr : myTeam.recommendAPlayer(board)){
+                System.out.println(plyr);
+            }
+            if (input.isEmpty()){
+                System.out.println("enter player name, number (number = 0 for your team, = 1 for other team");
+            }
+            if (scanner.hasNextLine()){
+                input = scanner.nextLine();
+            } else { input = null; }
         }
+//        myTeam.addPlayer(board.getOverallBoard().get(40));
+//        board.getOverallBoard().remove(40);
+//        myTeam.addPlayer(board.getOverallBoard().get(35));
+//        board.getOverallBoard().remove(35);
+//        myTeam.addPlayer(board.getOverallBoard().get(30));
+//        board.getOverallBoard().remove(30);
+//        for (Player plyr : myTeam.getTeamRoster()) {
+//            System.out.println(plyr.toString());
+//        }
+//        myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
+//        myTeam.analyzeTeam(board);
+//        board.flagPlayers();
+//        System.out.println(Arrays.toString(myTeam.getPerGameStats()));
+//        System.out.println(Arrays.toString(myTeam.getBenchmarkStats()));
+//        System.out.println(myTeam.toString());
+//        for (Player plyr : myTeam.recommendAPlayer(board)) {
+//            System.out.println(plyr.toString());
+//        }
 //        BoardAnalyzer.generateAveragePlayer(board);
 //        System.out.println(BoardAnalyzer.getAveragePlayer().toString());
 //        BoardAnalyzer.generateStandardDeviations(board);
