@@ -71,7 +71,7 @@ public class DraftBoard {
                     newPlayer.setAverageDraftPosition(i);
                 }
                 overallBoard.add(newPlayer);
-                playerMap.put(newPlayer.getName(), newPlayer);
+                playerMap.put(newPlayer.getName().toLowerCase(), newPlayer);
                 if (newPlayer.getPositions().contains("PG")){
                     PGBoard.add(newPlayer);
                 } if (newPlayer.getPositions().contains("SG")){

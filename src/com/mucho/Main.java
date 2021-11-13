@@ -50,24 +50,29 @@ public class Main {
         String input = scanner.nextLine();
         while (input != null){
             List<String> inputPlayer = Arrays.asList(input.split(","));
-            if (Integer.parseInt(inputPlayer.get(1)) == 0) {
-                myTeam.addPlayer(board.getPlayerMap().get(inputPlayer.get(0)));
-            }
-            Player toBeRemoved = board.getPlayerMap().get(inputPlayer.get(0));
-            System.out.println(toBeRemoved.toString());
-            myTeam.analyzeTeam(board);
-            board.flagPlayers();
-            System.out.println(myTeam.toString());
-            int indexOfRemovedPlayer = 0;
-            for (Player plyr : board.getOverallBoard()){
-                if (plyr.getName().equals(toBeRemoved.getName())){
-                    indexOfRemovedPlayer = board.getOverallBoard().indexOf(plyr);
+            inputPlayer.get(0).toLowerCase();
+            if (board.getPlayerMap().get(inputPlayer.get(0)) != null) {
+                if (Integer.parseInt(inputPlayer.get(1)) == 0) {
+                    myTeam.addPlayer(board.getPlayerMap().get(inputPlayer.get(0)));
                 }
-            }
-            board.getOverallBoard().remove(indexOfRemovedPlayer);
-            System.out.println("Best available player: " + board.getOverallBoard().get(0));
-            for (Player plyr : myTeam.recommendAPlayer(board)){
-                System.out.println(plyr);
+                Player toBeRemoved = board.getPlayerMap().get(inputPlayer.get(0));
+                System.out.println(toBeRemoved.toString());
+                myTeam.analyzeTeam(board);
+                board.flagPlayers();
+                System.out.println(myTeam.toString());
+                int indexOfRemovedPlayer = 0;
+                for (Player plyr : board.getOverallBoard()) {
+                    if (plyr.getName().equals(toBeRemoved.getName())) {
+                        indexOfRemovedPlayer = board.getOverallBoard().indexOf(plyr);
+                    }
+                }
+                board.getOverallBoard().remove(indexOfRemovedPlayer);
+                System.out.println("Best available player: " + board.getOverallBoard().get(0));
+                for (Player plyr : myTeam.recommendAPlayer(board)) {
+                    System.out.println(plyr);
+                }
+            } else if (board.getPlayerMap().get(inputPlayer.get(0)) == null){
+                System.out.println("Player invalid, try again");
             }
             if (input.isEmpty()){
                 System.out.println("enter player name, number (number = 0 for your team, = 1 for other team");
