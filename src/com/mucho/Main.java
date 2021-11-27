@@ -3,10 +3,7 @@ package com.mucho;
 import java.io.IOException;
 import java.sql.Array;
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -30,6 +27,7 @@ public class Main {
 	X Add zscore comparator
 	Write command line prototype
 	Recommending players that have production >= needed per game totals to meet benchmarks
+	Recommend based on fantasy impact first
 	Recommending with quotas
 	Identifying players that are likely to slide using ADP
 	Actual DraftBoard (might need to use netbeans to design GUI)
@@ -40,17 +38,22 @@ public class Main {
         ExcelReader testReader = new ExcelReader("Q:/assorted chicanery/HashtagBasketballProjections2122.xlsx");
         DraftBoard board = new DraftBoard();
         board.generateBoards(testReader);
-
-//        board.getOverallBoard().get(167).generateZScore(board, "TO");
-//        System.out.println(board.getOverallBoard().get(167).getzScore());
+//        for (String key : board.getPlayerMap().keySet()){
+//            System.out.println(key);
+//        }
         Team myTeam = new Team(12);
         myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
+
         System.out.println("Best available player: " + board.getOverallBoard().get(0).toString());
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+
         while (input != null){
             List<String> inputPlayer = Arrays.asList(input.split(","));
             inputPlayer.get(0).toLowerCase();
+            for (String str : inputPlayer) {
+                System.out.println(str);
+            }
             if (board.getPlayerMap().get(inputPlayer.get(0)) != null) {
                 if (Integer.parseInt(inputPlayer.get(1)) == 0) {
                     myTeam.addPlayer(board.getPlayerMap().get(inputPlayer.get(0)));
