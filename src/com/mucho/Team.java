@@ -56,13 +56,14 @@ public class Team {
         benchmarkStats[8] = turnovers * spots;
     }
 
+    // take player's stats in each category and add them to the total stats of the team
     public void addPlayer(Player addedPlayer){
         teamRoster.add(addedPlayer);
         FGM += addedPlayer.getFGMade();
         FGA += addedPlayer.getFGAttempted();
         FTM += addedPlayer.getFTMade();
         FTA += addedPlayer.getFTAttempted();
-        totalStats[0] = FGM / FGA;
+        totalStats[0] = FGA / FGM;
         totalStats[1] = FTM / FTA;
         totalStats[2] += addedPlayer.getThreePM();
         totalStats[3] += addedPlayer.getPTS();
