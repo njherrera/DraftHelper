@@ -43,10 +43,8 @@ public class Main {
 //        }
         Team myTeam = new Team(12);
         myTeam.setBenchmarkStats(.464, .783, 1.066, 14.776, 5.994, 3.33, 1.094, .740, 1.8, 12);
-        myTeam.addPlayer(board.getOverallBoard().get(0));
-        System.out.println(myTeam.toString());
         System.out.println("Best available player: " + board.getOverallBoard().get(0).toString());
-        /*Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
         while (input != null){
@@ -55,6 +53,7 @@ public class Main {
             for (String str : inputPlayer) {
                 System.out.println(str);
             }
+            System.out.println(board.getPlayerMap().get(inputPlayer.get(0)).toString());
             if (board.getPlayerMap().get(inputPlayer.get(0)) != null) {
                 if (Integer.parseInt(inputPlayer.get(1)) == 0) {
                     myTeam.addPlayer(board.getPlayerMap().get(inputPlayer.get(0)));
@@ -84,7 +83,7 @@ public class Main {
             if (scanner.hasNextLine()){
                 input = scanner.nextLine();
             } else { input = null; }
-        }*/
+        }
 //        myTeam.addPlayer(board.getOverallBoard().get(40));
 //        board.getOverallBoard().remove(40);
 //        myTeam.addPlayer(board.getOverallBoard().get(35));

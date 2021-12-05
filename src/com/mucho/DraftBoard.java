@@ -90,12 +90,14 @@ public class DraftBoard {
         }
     }
 
+    // take cell containing FG%, then split into two parts: portion inside parentheses and portion before parentheses
+    // then split portion inside paren thesis
     public double[] generateFGPercentage(XSSFCell cell){
         String[] FGPercentageSplit = cell.toString().split("\\s*[()]\\s*");
         double actualFGPercentage = Double.parseDouble(FGPercentageSplit[0]);
         String[] MakesAndAttempts = FGPercentageSplit[1].split("/");
-        double attempts = Double.parseDouble(MakesAndAttempts[0]);
-        double makes = Double.parseDouble(MakesAndAttempts[1]);
+        double makes = Double.parseDouble(MakesAndAttempts[0]);
+        double attempts = Double.parseDouble(MakesAndAttempts[1]);
         double[] FGBreakdown = new double[3];
         FGBreakdown[0] = makes;
         FGBreakdown[1] = attempts;
@@ -107,8 +109,8 @@ public class DraftBoard {
         String[] FTPercentageSplit = cell.toString().split("\\s*[()]\\s*");
         double actualFTPercentage = Double.parseDouble(FTPercentageSplit[0]);
         String[] MakesAndAttempts = FTPercentageSplit[1].split("/");
-        double attempts = Double.parseDouble(MakesAndAttempts[0]);
-        double makes = Double.parseDouble(MakesAndAttempts[1]);
+        double makes = Double.parseDouble(MakesAndAttempts[0]);
+        double attempts = Double.parseDouble(MakesAndAttempts[1]);
         double[] FTBreakdown = new double[3];
         FTBreakdown[0] = makes;
         FTBreakdown[1] = attempts;

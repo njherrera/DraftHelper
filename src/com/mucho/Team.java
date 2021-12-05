@@ -63,7 +63,7 @@ public class Team {
         FGA += addedPlayer.getFGAttempted();
         FTM += addedPlayer.getFTMade();
         FTA += addedPlayer.getFTAttempted();
-        totalStats[0] = FGA / FGM;
+        totalStats[0] = FGM / FGA;
         totalStats[1] = FTM / FTA;
         totalStats[2] += addedPlayer.getThreePM();
         totalStats[3] += addedPlayer.getPTS();
